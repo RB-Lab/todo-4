@@ -1,7 +1,8 @@
 import React from 'react';
+import './todo.css';
 
 const Todo = ({todo}) => (
-	<li>{todo.todo}</li>
+	<li className="todo">{todo.todo}</li>
 );
 
 export default Todo;

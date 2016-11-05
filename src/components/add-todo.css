@@ -1,0 +1,13 @@
+.add-todo {
+	position: absolute;
+	box-sizing: border-box;
+	bottom: 1em;
+	width: calc(100% - 2em);
+	border: none;
+	border-bottom: 1px #ddd solid;
+}
+
+.add-todo:focus{
+	outline: none;
+	border-bottom: 2px solid #59beda;
+}

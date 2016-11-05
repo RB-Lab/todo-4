@@ -8,24 +8,16 @@ import './App.css';
 const App = ({addTo, addTodo, inbox, todo, week, once}) => {
 	return (
 		<div className="App">
-			<Sheet
-				title="inbox"
-				todoType={INBOX}>
+			<Sheet title="inbox" todoType={INBOX}>
 				<TodoList todos={inbox}/>
 			</Sheet>
-			<Sheet
-				title="todo"
-				todoType={TODO}>
+			<Sheet title="todo" todoType={TODO}>
 				<TodoList todos={todo}/>
 			</Sheet>
-			<Sheet
-				title="week"
-				todoType={WEEK}>
+			<Sheet title="week" todoType={WEEK}>
 				<TodoList todos={week}/>
 			</Sheet>
-			<Sheet
-				title="once"
-				todoType={ONCE}>
+			<Sheet title="once" todoType={ONCE}>
 				<TodoList todos={once}/>
 			</Sheet>
 		</div>

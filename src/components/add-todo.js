@@ -1,17 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import './add-todo.css';
 
-const AddTodo = ({todoType, addTodo, setCurrentInput, currentInput}) => {
+const AddTodo = ({addTodo, setCurrentInput, currentInput}) => {
 	let ref = null;
 	return (
-		<div>
-			<input
-				type="text"
-				value={currentInput}
-				onInput={() => setCurrentInput(ref.value)}
-				onKeyDown={e => e.keyCode === 13 && addTodo(ref.value)}
-				ref={input => ref = input}/>
-		</div>
+		<input
+			className="add-todo"
+			type="text"
+			value={currentInput}
+			onInput={() => setCurrentInput(ref.value)}
+			onKeyDown={e => e.keyCode === 13 && addTodo(ref.value)}
+			ref={input => ref = input}/>
 	);
 };
 

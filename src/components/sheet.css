@@ -6,8 +6,9 @@
 	display: inline-block;
 	padding: 0 1em;
 	background: #fff;
-	box-shadow: 6px 7px 10px 2px #c3c3c3;
+	box-shadow: 6px 7px 10px 2px rgba(#000000, 0.34);
 	margin-top: 2em;
+	padding: 0 1em 2.7em;
 }
 
 .sheet__show-add {

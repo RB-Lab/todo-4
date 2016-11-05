@@ -1,6 +1,6 @@
 import {ADD_TODO} from '../constants';
 
-export default (addTo, todo) => ({
+export default (type, todo) => ({
 	type: ADD_TODO,
-	todo: {type: addTo, todo, resolved: false}
+	todo: {type: type, todo, resolved: false}
 })

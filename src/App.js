@@ -1,52 +1,44 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Sheet from './components/sheet';
+import TodoList from './components/todo-list';
+import {INBOX, TODO, WEEK, ONCE} from './constants';
 import './App.css';
 
-const App = ({addTo, showAddTodo, addTodo}) => {
+const App = ({addTo, addTodo, inbox, todo, week, once}) => {
 	return (
 		<div className="App">
 			<Sheet
 				title="inbox"
-				addTo="inbox"
-				showForm={addTo === 'inbox'}
-				showAddTodo={showAddTodo('inbox')}
-				addTodo={addTodo}>
+				todoType={INBOX}>
+				<TodoList todos={inbox}/>
 			</Sheet>
 			<Sheet
 				title="todo"
-				addTo="todo"
-				showForm={addTo === 'todo'}
-				showAddTodo={showAddTodo('todo')}
-				addTodo={addTodo}>
+				todoType={TODO}>
+				<TodoList todos={todo}/>
 			</Sheet>
 			<Sheet
 				title="week"
-				addTo="week"
-				showForm={addTo === 'week'}
-				showAddTodo={showAddTodo('week')}
-				addTodo={addTodo}>
+				todoType={WEEK}>
+				<TodoList todos={week}/>
 			</Sheet>
 			<Sheet
 				title="once"
-				addTo="once"
-				showForm={addTo === 'once'}
-				showAddTodo={showAddTodo('once')}
-				addTodo={addTodo}>
+				todoType={ONCE}>
+				<TodoList todos={once}/>
 			</Sheet>
 		</div>
 	);
 }
 
 const mapStateToProps = state => ({
-	addTo: state.addTo
+	inbox: state.todos.filter(todo => todo.type === INBOX),
+	todo: state.todos.filter(todo => todo.type === TODO),
+	week: state.todos.filter(todo => todo.type === WEEK),
+	once: state.todos.filter(todo => todo.type === ONCE)
 });
 
-import showAddTo from './actions/show-add-to';
-import addTodo from './actions/add-todo';
-const mapDispatchToProps = dispatch => ({
-	showAddTodo: addTo => () => dispatch(showAddTo(addTo)),
-	addTodo: (addTo, todo) => dispatch(addTodo(addTo, todo))
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,21 +1,34 @@
 import {
 	ADD_TODO,
-	SHOW_ADD_TODO
+	TODO_INPUT,
+	INBOX,
+	TODO,
+	WEEK,
+	ONCE
 } from '../constants';
 
 const defaultState = {
-	addTo: null,
+	currentInputs: {
+		[INBOX]: '',
+		[TODO]: '',
+		[WEEK]: '',
+		[ONCE]: ''
+	},
 	todos: []
 }
 
 const reducers = {
 	[ADD_TODO]: (state, action) => Object.assign({}, state, {
-		addTo: null,
-		todos: state.todos.concat(action.todo)
+		todos: state.todos.concat(action.todo),
+		currentInputs: Object.assign({}, state.currentInputs, {
+			[action.todo.type]: ''
+		})
 	}),
-	[SHOW_ADD_TODO]: (state, action) => Object.assign({}, state, {
-		addTo: action.addTo
-	})
+	[TODO_INPUT]: (state, action) => Object.assign({}, state, {
+		currentInputs: Object.assign({}, state.currentInputs, {
+			[action.todoType]: action.todoText
+		})
+	}),
 }
 
 const todoReducer = (state = defaultState, action) => {

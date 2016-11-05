@@ -1,17 +1,29 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-const AddTodo = ({addTo, addTodo}) => {
-	let inputValue = '';
+const AddTodo = ({todoType, addTodo, setCurrentInput, currentInput}) => {
 	let ref = null;
 	return (
 		<div>
 			<input
 				type="text"
-				onInput={() => ref && (inputValue = ref.value)}
+				value={currentInput}
+				onInput={() => setCurrentInput(ref.value)}
+				onKeyDown={e => e.keyCode === 13 && addTodo(ref.value)}
 				ref={input => ref = input}/>
-			<button onClick={() => addTodo(addTo, inputValue)}>add</button>
 		</div>
 	);
 };
 
-export default AddTodo;
+const mapStateToProps = (state, props) => ({
+	currentInput: state.currentInputs[props.todoType]
+});
+
+import addTodo from '../actions/add-todo';
+import todoInput from '../actions/todo-input';
+const mapDispatchToProps = (dispatch, props) => ({
+	addTodo: value => dispatch(addTodo(props.todoType, value)),
+	setCurrentInput: value => dispatch(todoInput(props.todoType, value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodo);

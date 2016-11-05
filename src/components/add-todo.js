@@ -9,7 +9,7 @@ const AddTodo = ({addTodo, setCurrentInput, currentInput}) => {
 			className="add-todo"
 			type="text"
 			value={currentInput}
-			onInput={() => setCurrentInput(ref.value)}
+			onChange={() => setCurrentInput(ref.value)}
 			onKeyDown={e => e.keyCode === 13 && addTodo(ref.value)}
 			ref={input => ref = input}/>
 	);

@@ -8,16 +8,32 @@ import './App.css';
 const App = ({addTo, addItem, inbox, todo, week, once}) => {
 	return (
 		<div className="App">
-			<Sheet title="inbox" todoType={INBOX} addItem={addItem}>
+			<Sheet
+				title="inbox"
+				todoType={INBOX}
+				addItem={addItem}
+				placeholder="I have something new...">
 				<TodoList todos={inbox}/>
 			</Sheet>
-			<Sheet title="todo" todoType={TODO} addItem={addItem}>
+			<Sheet
+				title="todo"
+				todoType={TODO}
+				addItem={addItem}
+				placeholder="Today I have to do...">
 				<TodoList todos={todo}/>
 			</Sheet>
-			<Sheet title="week" todoType={WEEK} addItem={addItem}>
+			<Sheet
+				title="week"
+				todoType={WEEK}
+				addItem={addItem}
+				placeholder="This week I have to do...">
 				<TodoList todos={week}/>
 			</Sheet>
-			<Sheet title="once" todoType={ONCE} addItem={addItem}>
+			<Sheet
+				title="once"
+				todoType={ONCE}
+				addItem={addItem}
+				placeholder="Once I have to do...">
 				<TodoList todos={once}/>
 			</Sheet>
 		</div>

@@ -3,7 +3,7 @@ import TodoInput from './todo-input';
 import bem from '../lib/bem';
 import './sheet.css';
 
-const Sheet = ({title, todoType, children, addItem}) => (
+const Sheet = ({title, todoType, children, addItem, placeholder}) => (
 	<div className="sheet">
 		<h3>{title}</h3>
 		<div className={bem('sheet', 'content')}>
@@ -13,7 +13,7 @@ const Sheet = ({title, todoType, children, addItem}) => (
 			inputId={todoType}
 			className={bem('sheet', 'add-todo')}
 			finalize={addItem}
-			placeholder="I have to do..."/>
+			placeholder={placeholder}/>
 	</div>
 );
 

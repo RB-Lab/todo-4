@@ -1,14 +1,15 @@
-import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
 import {
-	ADD_TODO,
+	ADD_ITEM,
 	TODO_INPUT,
 	TOGGLE_RESOLVE,
+	REMOVE_ITEM,
 	INBOX,
 	TODO,
 	WEEK,
 	ONCE
 } from '../constants';
-import {replace} from '../lib/array-utils'
+import {replace, splice} from '../lib/array-utils'
 
 const defaultState = {
 	currentInputs: {
@@ -21,7 +22,7 @@ const defaultState = {
 }
 
 const reducers = {
-	[ADD_TODO]: (state, action) => Object.assign({}, state, {
+	[ADD_ITEM]: (state, action) => Object.assign({}, state, {
 		todos: state.todos.concat(action.todo),
 		currentInputs: Object.assign({}, state.currentInputs, {
 			[action.todo.type]: ''
@@ -33,14 +34,21 @@ const reducers = {
 		})
 	}),
 	[TOGGLE_RESOLVE]: (state, action) => {
-		const todo = find(state.todos, todo_ => todo_.id === action.id);
+		const index = findIndex(state.todos, todo_ => todo_.id === action.id);
+		const todo = state.todos[index];
 		return Object.assign({}, state, {
 			todos: replace(
 				state.todos,
-				state.todos.indexOf(todo),
+				index,
 				Object.assign({}, todo, {resolved: !todo.resolved})
 			)
-		})
+		});
+	},
+	[REMOVE_ITEM]: (state, action) => {
+		const index = findIndex(state.todos, todo_ => todo_.id === action.id);
+		return Object.assign({}, state, {
+			todos: splice(state.todos, index, 1)
+		});
 	}
 }
 

@@ -33,4 +33,17 @@ describe('testing "replace"', () => {
 	});
 });
 
-// TODO test splice
+describe('testing "splice"', () => {
+	it('should not mutate array', () => {
+		const newArr = splice(arr, 2, 2, [42, 12]);
+		expect(arr).toBe(arr);
+		expect(arr).not.toBe(newArr);
+		expect(arr).toEqual([1, 2, 3, 4, 5, 6, 7]);
+	});
+	it('should replace multiple values with items from array arg', () => {
+		expect(splice(arr, 2, 2, [42, 12])).toEqual([1, 2, 42, 12, 5, 6, 7]);
+	});
+	it('should values if no array porvided', () => {
+		expect(splice(arr, 2, 2)).toEqual([1, 2, 5, 6, 7]);
+	});
+});

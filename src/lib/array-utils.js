@@ -10,8 +10,8 @@ export const replace = (arr, index, ...newItems) => [
 	...arr.slice(index + newItems.length)
 ];
 
-export const splice = (arr, start, stop, newItems) => [
+export const splice = (arr, start, length, newItems = []) => [
 	...arr.slice(0, start),
 	...newItems,
-	...arr.slice(stop)
+	...arr.slice(start + length)
 ];

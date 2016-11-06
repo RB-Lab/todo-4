@@ -1,6 +1,6 @@
 export const TODO_INPUT = 'TODO_INPUT';
-export const ADD_TODO = 'ADD_TODO';
-export const REMOVE_TODO = 'REMOVE_TODO';
+export const ADD_ITEM = 'ADD_ITEM';
+export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const TOGGLE_RESOLVE = 'TOGGLE_RESOLVE';
 
 export const INBOX = 'inbox';

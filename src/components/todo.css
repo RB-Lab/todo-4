@@ -7,17 +7,22 @@
 	margin-bottom: 8px;
 }
 
-.todo__content {
-	margin: 0 65px 0 40px;
+.todo--resolved {
+	text-decoration: line-through;
 }
 
-.todo__resolved, .todo__actions {
+.todo__content {
+	margin: 0 65px 0 40px;
+	word-wrap: break-word;
+}
+
+.todo__toggle-resolve, .todo__actions {
 	position: absolute;
 	top: 13px;
 	font-size: 20px
 }
 
-.todo__resolved {
+.todo__toggle-resolve {
 	left: 15px;
 	width: 22px;
 	height: 22px;
@@ -26,7 +31,7 @@
 	appearance: none;
 }
 
-.todo__resolved:checked:after{
+.todo__toggle-resolve:checked:after{
 	content: "\2713";
 	font-size: 32px;
 	position: relative;
@@ -35,7 +40,7 @@
 	color: #0e62a5;
 }
 
-.todo__resolved:focus {
+.todo__toggle-resolve:focus {
 	outline: none
 }
 

@@ -1,13 +1,19 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import mdIt from 'markdown-it';
 import bem from '../lib/bem';
 import './todo.css';
 
+// to add _blank: http://bit.ly/2fr1GAu
 const createMarkup = md => ({__html: mdIt({linkify: true}).render(md)});
 
-const Todo = ({todo}) => (
+const Todo = ({todo, resolveTodo}) => (
 	<li className={bem('todo', {resolved: todo.resolved})}>
-		<input type="checkbox" className={bem('todo', 'resolved')} />
+		<input
+			type="checkbox"
+			className={bem('todo', 'toggle-resolve')}
+			onChange={() => resolveTodo(todo.id)}
+			checked={todo.resolved}/>
 		<div
 			dangerouslySetInnerHTML={createMarkup(todo.todo)}
 			className={bem('todo', 'content')} />
@@ -18,4 +24,13 @@ const Todo = ({todo}) => (
 	</li>
 );
 
-export default Todo;
+const mapStateToProps = (state) => ({
+
+});
+
+import resolveTodo from '../actions/resolve-todo';
+const mapDispatchToProps = (dispatch) => ({
+	resolveTodo: id => dispatch(resolveTodo(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Todo);

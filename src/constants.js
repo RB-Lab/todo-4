@@ -1,7 +1,7 @@
 export const TODO_INPUT = 'TODO_INPUT';
 export const ADD_TODO = 'ADD_TODO';
 export const REMOVE_TODO = 'REMOVE_TODO';
-export const RESOLVE_TODO = 'RESOLVE_TODO';
+export const TOGGLE_RESOLVE = 'TOGGLE_RESOLVE';
 
 export const INBOX = 'inbox';
 export const TODO = 'todo';

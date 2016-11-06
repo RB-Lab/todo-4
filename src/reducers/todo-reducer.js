@@ -1,11 +1,14 @@
+import find from 'lodash/find';
 import {
 	ADD_TODO,
 	TODO_INPUT,
+	TOGGLE_RESOLVE,
 	INBOX,
 	TODO,
 	WEEK,
 	ONCE
 } from '../constants';
+import {replace} from '../lib/array-utils'
 
 const defaultState = {
 	currentInputs: {
@@ -29,6 +32,16 @@ const reducers = {
 			[action.todoType]: action.todoText
 		})
 	}),
+	[TOGGLE_RESOLVE]: (state, action) => {
+		const todo = find(state.todos, todo_ => todo_.id === action.id);
+		return Object.assign({}, state, {
+			todos: replace(
+				state.todos,
+				state.todos.indexOf(todo),
+				Object.assign({}, todo, {resolved: !todo.resolved})
+			)
+		})
+	}
 }
 
 const todoReducer = (state = defaultState, action) => {

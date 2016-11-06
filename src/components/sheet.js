@@ -1,14 +1,18 @@
 import React from 'react';
-import AddTodo from './add-todo';
+import TodoInput from './todo-input';
+import bem from '../lib/bem';
 import './sheet.css';
 
-const Sheet = ({title, todoType, children}) => (
+const Sheet = ({title, todoType, children, addItem}) => (
 	<div className="sheet">
 		<h3>{title}</h3>
-		<div className="sheet__content">
+		<div className={bem('sheet', 'content')}>
 			{children}
 		</div>
-		<AddTodo todoType={todoType}/>
+		<TodoInput
+			inputId={todoType}
+			className={bem('sheet', 'add-todo')}
+			finalize={addItem}/>
 	</div>
 );
 

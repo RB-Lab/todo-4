@@ -1,7 +1,8 @@
 import findIndex from 'lodash/findIndex';
+import omit from 'lodash/omit';
 import {
 	ADD_ITEM,
-	TODO_INPUT,
+	CHANGE_CURRENT_INPUT,
 	TOGGLE_RESOLVE,
 	REMOVE_ITEM,
 	INBOX,
@@ -12,25 +13,18 @@ import {
 import {replace, splice} from '../lib/array-utils'
 
 const defaultState = {
-	currentInputs: {
-		[INBOX]: '',
-		[TODO]: '',
-		[WEEK]: '',
-		[ONCE]: ''
-	},
+	currentInputs: {},
 	todos: []
 }
 
 const reducers = {
 	[ADD_ITEM]: (state, action) => Object.assign({}, state, {
 		todos: state.todos.concat(action.todo),
-		currentInputs: Object.assign({}, state.currentInputs, {
-			[action.todo.type]: ''
-		})
+		currentInputs: omit(state.currentInputs, action.todo.type)
 	}),
-	[TODO_INPUT]: (state, action) => Object.assign({}, state, {
+	[CHANGE_CURRENT_INPUT]: (state, action) => Object.assign({}, state, {
 		currentInputs: Object.assign({}, state.currentInputs, {
-			[action.todoType]: action.todoText
+			[action.inputId]: action.value
 		})
 	}),
 	[TOGGLE_RESOLVE]: (state, action) => {

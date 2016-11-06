@@ -1,4 +1,4 @@
-export const TODO_INPUT = 'TODO_INPUT';
+export const CHANGE_CURRENT_INPUT = 'CHANGE_CURRENT_INPUT';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const TOGGLE_RESOLVE = 'TOGGLE_RESOLVE';

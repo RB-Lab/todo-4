@@ -5,19 +5,19 @@ import TodoList from './components/todo-list';
 import {INBOX, TODO, WEEK, ONCE} from './constants';
 import './App.css';
 
-const App = ({addTo, addTodo, inbox, todo, week, once}) => {
+const App = ({addTo, addItem, inbox, todo, week, once}) => {
 	return (
 		<div className="App">
-			<Sheet title="inbox" todoType={INBOX}>
+			<Sheet title="inbox" todoType={INBOX} addItem={addItem}>
 				<TodoList todos={inbox}/>
 			</Sheet>
-			<Sheet title="todo" todoType={TODO}>
+			<Sheet title="todo" todoType={TODO} addItem={addItem}>
 				<TodoList todos={todo}/>
 			</Sheet>
-			<Sheet title="week" todoType={WEEK}>
+			<Sheet title="week" todoType={WEEK} addItem={addItem}>
 				<TodoList todos={week}/>
 			</Sheet>
-			<Sheet title="once" todoType={ONCE}>
+			<Sheet title="once" todoType={ONCE} addItem={addItem}>
 				<TodoList todos={once}/>
 			</Sheet>
 		</div>
@@ -31,6 +31,9 @@ const mapStateToProps = state => ({
 	once: state.todos.filter(todo => todo.type === ONCE)
 });
 
-const mapDispatchToProps = dispatch => ({});
+import addItem from './actions/add-item';
+const mapDispatchToProps = dispatch => ({
+	addItem: (type, value) => dispatch(addItem(type, value))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -21,3 +21,13 @@ h3 {
 	text-transform: uppercase;
 	font-weight: 400;
 }
+
+input[type="text"] {
+	border: none;
+	border-bottom: 1px #ddd solid;
+}
+
+input[type="text"]:focus {
+	outline: none;
+	border-bottom: 2px solid #59beda;
+}

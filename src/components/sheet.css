@@ -11,17 +11,11 @@
 	padding: 0 1em 2.7em;
 }
 
-.sheet__show-add {
+.sheet__add-todo {
 	position: absolute;
-	right: 6px;
-	top: 3px;
-	font-size: 40px;
-	padding: 10px;
-	line-height: 20px;
-	font-weight: 900;
-	color: #bbb;
-	text-shadow: 2px 2px 4px #cecece;
-	cursor: pointer;
+	box-sizing: border-box;
+	bottom: 1em;
+	width: calc(100% - 2em);
 }
 
 .sheet:last-child {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const TodoInput = ({inputId, finalize, setCurrentInput, currentInput, className}) => {
+const TodoInput = ({inputId, finalize, setCurrentInput, currentInput, className, autofocus}) => {
 	let ref = null;
 	return (
 		<input
@@ -10,7 +10,7 @@ const TodoInput = ({inputId, finalize, setCurrentInput, currentInput, className}
 			value={currentInput}
 			onChange={() => setCurrentInput(ref.value)}
 			onKeyDown={e => e.keyCode === 13 && finalize(inputId, ref.value)}
-			ref={input => ref = input}/>
+			ref={input => {ref = input; if(autofocus) input && input.focus()}}/>
 	);
 };
 

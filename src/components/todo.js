@@ -19,6 +19,7 @@ const Todo = ({todo, toggleResolve, removeItem, edit, startEdit, stopEdit, saveI
 			<TodoInput
 				inputId={todo.id}
 				finalize={saveItem}
+				autofocus
 				className={bem('todo', 'edit')}/> :
 			<div
 				dangerouslySetInnerHTML={createMarkup(todo.todo)}

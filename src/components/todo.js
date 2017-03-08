@@ -5,21 +5,21 @@ import TodoInput from './todo-input';
 import './todo.css';
 
 // to add _blank: http://bit.ly/2fr1GAu
-const createMarkup = md => ({__html: mdIt({linkify: true}).render(md)});
+const createMarkup = (md) => ({__html: mdIt({linkify: true}).render(md)});
 
 class Todo extends Component {
-	constructor(){
+	constructor() {
 		super();
 		this.state = {edit: false};
 		this.toggleEdit = () => {
-			this.setState({edit: !this.state.edit})
+			this.setState({edit: !this.state.edit});
 		};
 		this.saveItem = (todoId, newValue) => {
 			this.props.saveItem(todoId, newValue);
 			this.setState({edit: false});
 		};
 	}
-	render(){
+	render() {
 		const {
 			todo,
 			toggleResolve,
@@ -32,14 +32,14 @@ class Todo extends Component {
 					type="checkbox"
 					className={bem('todo', 'toggle-resolve')}
 					onChange={() => toggleResolve(todo.id)}
-					checked={todo.resolved}/>
+					checked={todo.resolved} />
 				{this.state.edit ?
 					<TodoInput
 						inputId={todo.id}
 						finalize={this.saveItem}
 						value={todo.todo}
 						autofocus
-						className={bem('todo', 'edit')}/> :
+						className={bem('todo', 'edit')} /> :
 					<div
 						dangerouslySetInnerHTML={createMarkup(todo.todo)}
 						className={bem('todo', 'content')} />
@@ -47,13 +47,13 @@ class Todo extends Component {
 				<div className={bem('todo', 'actions')}>
 					<i
 						onClick={this.toggleEdit}
-						className={`fa fa-pencil ${bem('todo', 'action', {edit: true})}`}/>
+						className={`fa fa-pencil ${bem('todo', 'action', {edit: true})}`} />
 					<i
 						onClick={() => removeItem(todo.id)}
-						className={`fa fa-trash ${bem('todo', 'action', {delete: true})}`}/>
+						className={`fa fa-trash ${bem('todo', 'action', {delete: true})}`} />
 				</div>
 			</li>
-		)
+		);
 	}
 }
 

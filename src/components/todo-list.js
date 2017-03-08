@@ -4,8 +4,8 @@ import './todo-list.css';
 
 const TodoList = (props) => (
 	<ul className="todo-list">
-		{props.todos.map((todo, i) => (
-			<Todo key={`todo-${i}`} todo={todo} {...props}/>
+		{props.todos.map((todo) => (
+			<Todo key={todo.id} todo={todo} {...props} />
 		))}
 	</ul>
 );

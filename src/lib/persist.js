@@ -6,15 +6,15 @@ export function loadFromLocalStorage() {
 		if (serializedState === null) {
 			return undefined;
 		}
-		return JSON.parse(serializedState)
+		return JSON.parse(serializedState);
 	} catch (ignore) {
 		return undefined;
 	}
 }
 
-export function saveToLocalStorage(state){
+export function saveToLocalStorage(state) {
 	try {
 		const serializedState = JSON.stringify(state);
 		window.localStorage.setItem(ITEM_NAME, serializedState);
-	} catch (ingore){}
+	} catch (ingore) {}
 }

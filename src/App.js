@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import findIndex from 'lodash/findIndex';
 
 import {loadFromLocalStorage, saveToLocalStorage} from './lib/persist';
-import {replace, splice} from './lib/array-utils'
+import {replace, splice} from './lib/array-utils';
 import Sheet from './components/sheet';
 import TodoList from './components/todo-list';
 import {INBOX, TODO, WEEK, ONCE} from './constants';
@@ -10,7 +10,7 @@ import './App.css';
 
 const selectTodoIndexById = (state, id) => findIndex(
 	state.todos,
-	todo => todo.id === id
+	(todo) => todo.id === id
 );
 
 class App extends Component {
@@ -50,10 +50,10 @@ class App extends Component {
 	}
 
 	render() {
-		const inbox = this.state.todos.filter(todo => todo.type === INBOX);
-		const todo = this.state.todos.filter(todo => todo.type === TODO);
-		const week = this.state.todos.filter(todo => todo.type === WEEK);
-		const once = this.state.todos.filter(todo => todo.type === ONCE);
+		const inbox = this.state.todos.filter((todo) => todo.type === INBOX);
+		const todoNow = this.state.todos.filter((todo) => todo.type === TODO);
+		const week = this.state.todos.filter((todo) => todo.type === WEEK);
+		const once = this.state.todos.filter((todo) => todo.type === ONCE);
 		saveToLocalStorage(this.state); // TODO where this should be placed actually?
 
 		return (
@@ -67,7 +67,7 @@ class App extends Component {
 						todos={inbox}
 						toggleResolve={this.toggleResolve}
 						removeItem={this.removeItem}
-						saveItem={this.saveItem}/>
+						saveItem={this.saveItem} />
 				</Sheet>
 				<Sheet
 					title="todo"
@@ -75,10 +75,10 @@ class App extends Component {
 					addItem={this.addItem}
 					placeholder="Today I have to do...">
 					<TodoList
-						todos={todo}
+						todos={todoNow}
 						toggleResolve={this.toggleResolve}
 						removeItem={this.removeItem}
-						saveItem={this.saveItem}/>
+						saveItem={this.saveItem} />
 				</Sheet>
 				<Sheet
 					title="week"
@@ -89,7 +89,7 @@ class App extends Component {
 						todos={week}
 						toggleResolve={this.toggleResolve}
 						removeItem={this.removeItem}
-						saveItem={this.saveItem}/>
+						saveItem={this.saveItem} />
 				</Sheet>
 				<Sheet
 					title="once"
@@ -100,7 +100,7 @@ class App extends Component {
 						todos={once}
 						toggleResolve={this.toggleResolve}
 						removeItem={this.removeItem}
-						saveItem={this.saveItem}/>
+						saveItem={this.saveItem} />
 				</Sheet>
 			</div>
 		);

@@ -13,7 +13,7 @@ const Sheet = ({title, todoType, children, addItem, placeholder}) => (
 			inputId={todoType}
 			className={bem('sheet', 'add-todo')}
 			finalize={addItem}
-			placeholder={placeholder}/>
+			placeholder={placeholder} />
 	</div>
 );
 

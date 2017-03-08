@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 class TodoInput extends Component {
-	constructor(){
+	constructor() {
 		super();
 		this.state = {value: null};
 		this.setValue = (value) => {
@@ -10,9 +10,9 @@ class TodoInput extends Component {
 		this.finalize = () => {
 			this.props.finalize(this.props.inputId, this.state.value);
 			this.setValue(null);
-		}
+		};
 	}
-	render(){
+	render() {
 		const {
 			className,
 			placeholder,
@@ -21,6 +21,13 @@ class TodoInput extends Component {
 			value
 		} = this.props;
 		let ref = null;
+		const inputRef = (input) => {
+			ref = input;
+			if (autofocus && input) {
+				input.focus();
+			}
+		};
+
 		return (
 			<input
 				className={className}
@@ -28,9 +35,9 @@ class TodoInput extends Component {
 				value={(this.state.value === null ? value : this.state.value) || ''}
 				placeholder={placeholder}
 				onChange={() => this.setValue(ref.value)}
-				onKeyDown={e => e.keyCode === 13 && this.finalize(inputId, ref.value)}
-				ref={input => {ref = input; if(autofocus) input && input.focus()}}/>
-		)
+				onKeyDown={(e) => e.keyCode === 13 && this.finalize(inputId, ref.value)}
+				ref={inputRef} />
+		);
 	}
 }
 

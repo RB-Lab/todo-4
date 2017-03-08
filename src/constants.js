@@ -10,3 +10,7 @@ export const INBOX = 'inbox';
 export const TODO = 'todo';
 export const WEEK = 'week';
 export const ONCE = 'once';
+
+export const itemTypes = {
+	TODO: 'TODO'
+};

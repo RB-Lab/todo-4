@@ -1,11 +1,29 @@
 import React, {Component} from 'react';
+import {DragSource} from 'react-dnd';
 import mdIt from 'markdown-it';
+import {itemTypes} from '../constants';
 import bem from '../lib/bem';
 import TodoInput from './todo-input';
 import './todo.css';
 
 // to add _blank: http://bit.ly/2fr1GAu
 const createMarkup = (md) => ({__html: mdIt({linkify: true}).render(md)});
+
+const todoSource = {
+	beginDrag(props) {
+		return {
+			draggedTodo: props.todo
+		};
+	}
+};
+
+function collect(connect, monitor) {
+	return {
+		connectDragSource: connect.dragSource(),
+		isDragging: monitor.isDragging()
+	};
+}
+
 
 class Todo extends Component {
 	constructor() {
@@ -23,11 +41,13 @@ class Todo extends Component {
 		const {
 			todo,
 			toggleResolve,
-			removeItem
+			removeItem,
+			isDragging,
+			connectDragSource
 		} = this.props;
 
-		return (
-			<li className={bem('todo', {resolved: todo.resolved})}>
+		return connectDragSource(
+			<li className={bem('todo', {resolved: todo.resolved, 'is-dragging': isDragging})}>
 				<input
 					type="checkbox"
 					className={bem('todo', 'toggle-resolve')}
@@ -57,4 +77,16 @@ class Todo extends Component {
 	}
 }
 
-export default Todo;
+Todo.propTypes = {
+	todo: React.PropTypes.shape({
+		id: React.PropTypes.number,
+		todo: React.PropTypes.string
+	}).isRequired,
+	toggleResolve: React.PropTypes.func.isRequired,
+	removeItem: React.PropTypes.func.isRequired,
+	saveItem: React.PropTypes.func.isRequired,
+	isDragging: React.PropTypes.bool.isRequired,
+	connectDragSource: React.PropTypes.func.isRequired
+};
+
+export default DragSource(itemTypes.TODO, todoSource, collect)(Todo);

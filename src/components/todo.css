@@ -12,6 +12,10 @@
 	text-decoration: line-through;
 }
 
+.todo--is-dragging {
+	opacity: 0.5;
+}
+
 .todo__edit {
 	margin: 8px 70px 0 40px;
 	width: calc(100% - 40px - 70px);

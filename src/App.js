@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import {DragDropContext} from 'react-dnd';
 import findIndex from 'lodash/findIndex';
+import HTML5Backend from 'react-dnd-html5-backend';
 
 import {loadFromLocalStorage, saveToLocalStorage} from './lib/persist';
 import {replace, splice} from './lib/array-utils';
@@ -92,7 +94,7 @@ class App extends Component {
 						saveItem={this.saveItem} />
 				</Sheet>
 				<Sheet
-					title="once"
+					title="at some point"
 					todoType={ONCE}
 					addItem={this.addItem}
 					placeholder="Once I have to do...">
@@ -107,4 +109,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default DragDropContext(HTML5Backend)(App);

@@ -6,8 +6,8 @@ import bem from '../lib/bem';
 import './sheet.css';
 
 const sheetTarget = {
-	drop(props) { // {addItem, type, draggedTodo}
-		console.log(props); // addItem(type, draggedTodo)
+	drop(props, monitor) {
+		props.changeType(monitor.getItem().draggedTodo.id, props.todoType);
 	}
 };
 

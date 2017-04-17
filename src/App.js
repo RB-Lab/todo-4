@@ -32,6 +32,7 @@ class App extends Component {
 					title="inbox"
 					todoType={INBOX}
 					addItem={this.model.addItem}
+					changeType={this.model.changeType}
 					placeholder="I have something new...">
 					<TodoList
 						todos={inbox}
@@ -43,6 +44,7 @@ class App extends Component {
 					title="todo"
 					todoType={TODO}
 					addItem={this.model.addItem}
+					changeType={this.model.changeType}
 					placeholder="Today I have to do...">
 					<TodoList
 						todos={todoNow}
@@ -54,6 +56,7 @@ class App extends Component {
 					title="week"
 					todoType={WEEK}
 					addItem={this.model.addItem}
+					changeType={this.model.changeType}
 					placeholder="This week I have to do...">
 					<TodoList
 						todos={week}
@@ -65,6 +68,7 @@ class App extends Component {
 					title="at some point"
 					todoType={ONCE}
 					addItem={this.model.addItem}
+					changeType={this.model.changeType}
 					placeholder="Once I have to do...">
 					<TodoList
 						todos={once}

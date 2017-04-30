@@ -27,6 +27,7 @@
 		"no-trailing-spaces": "off",
 		"arrow-parens": ["error", "always"],
 		"no-empty": ["error", { "allowEmptyCatch": true }],
+		"no-use-before-define": ["error", {"functions": false}],
 
 		"react/prop-types": "warn",
 		"react/jsx-filename-extension": "off",

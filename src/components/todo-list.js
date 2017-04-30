@@ -2,10 +2,10 @@ import React from 'react';
 import Todo from './todo';
 import './todo-list.css';
 
-const TodoList = ({todos}) => (
+const TodoList = (props) => (
 	<ul className="todo-list">
-		{todos.map((todo, i) => (
-			<Todo key={`todo-${i}`} todo={todo} />
+		{props.todos.map((todo) => (
+			<Todo key={todo.id} todo={todo} {...props} />
 		))}
 	</ul>
 );

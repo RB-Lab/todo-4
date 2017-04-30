@@ -11,6 +11,10 @@
 	padding: 0 1em 2.7em;
 }
 
+.sheet--hovered {
+	border: 2px #56c7e8 solid;
+}
+
 .sheet__add-todo {
 	position: absolute;
 	box-sizing: border-box;

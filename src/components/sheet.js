@@ -1,10 +1,33 @@
 import React from 'react';
+import {DropTarget} from 'react-dnd';
+import {itemTypes} from '../constants';
 import TodoInput from './todo-input';
 import bem from '../lib/bem';
 import './sheet.css';
 
-const Sheet = ({title, todoType, children, addItem, placeholder}) => (
-	<div className="sheet">
+const sheetTarget = {
+	drop(props, monitor) {
+		props.changeType(monitor.getItem().draggedTodo.id, props.todoType);
+	}
+};
+
+function collect(connect, monitor) {
+	return {
+		connectDropTarget: connect.dropTarget(),
+		isOver: monitor.isOver()
+	};
+}
+
+const Sheet = ({
+	title,
+	todoType,
+	children,
+	addItem,
+	placeholder,
+	connectDropTarget,
+	isOver
+}) => connectDropTarget(
+	<div className={bem('sheet', {hovered: isOver})}>
 		<h3>{title}</h3>
 		<div className={bem('sheet', 'content')}>
 			{children}
@@ -13,8 +36,18 @@ const Sheet = ({title, todoType, children, addItem, placeholder}) => (
 			inputId={todoType}
 			className={bem('sheet', 'add-todo')}
 			finalize={addItem}
-			placeholder={placeholder}/>
+			placeholder={placeholder} />
 	</div>
 );
 
-export default Sheet;
+Sheet.propTypes = {
+	title: React.PropTypes.string.isRequired,
+	todoType: React.PropTypes.string.isRequired,
+	children: React.PropTypes.element.isRequired,
+	addItem: React.PropTypes.func.isRequired,
+	placeholder: React.PropTypes.string.isRequired,
+	connectDropTarget: React.PropTypes.func.isRequired,
+	isOver: React.PropTypes.bool.isRequired
+};
+
+export default DropTarget(itemTypes.TODO, sheetTarget, collect)(Sheet);
